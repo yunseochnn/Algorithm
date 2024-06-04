@@ -1,13 +1,8 @@
 n, m = map(int,input().split())
-arr = []
-arr2 = []
-for row in range(n):
-    a = list(map(int,input().split()))
-    arr.append(a)
-for row in range(n):
-    a = list(map(int,input().split()))
-    arr2.append(a)
-for row in range(n):
-    for col in range(m):
-        print(arr[row][col]+arr2[row][col], end=' ')
+arr1 = [list(map(int,input().split())) for _ in range(n)]
+arr2 = [list(map(int,input().split())) for _ in range(n)]
+
+for a1,a2 in zip(arr1,arr2):
+    for v1,v2 in zip(a1,a2):
+        print(v1+v2,end=' ')
     print()
