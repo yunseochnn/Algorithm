@@ -1,9 +1,15 @@
 from collections import deque
-N, M, V = map(int, input().split())
-
+n,m,v = map(int,input().split())
+graph = [[] for _ in range(n+1)]
+for _ in range(m):
+    x,y = list(map(int,input().split()))
+    graph[x].append(y)
+    graph[y].append(x)
+for i in graph:
+    i.sort()
 def dfs(start):
-    visited[start]=True
-    print(start, end=" ")
+    visited[start] = True
+    print(start,end=" ")
     for i in graph[start]:
         if not visited[i]:
             dfs(i)
@@ -11,24 +17,14 @@ def bfs(start):
     q = deque([start])
     visited[start] = True
     while q:
-        v = q.popleft()
-        print(v,end=" ")
-        for i in graph[v]:
+        t = q.popleft()
+        print(t, end=" ")
+        for i in graph[t]:
             if not visited[i]:
-                visited[i] = True
                 q.append(i)
-
-graph = [[] for _ in range(N + 1)]
-for _ in range(M):
-    a, b = map(int,input().split())
-    graph[a].append(b)
-    graph[b].append(a)
-
-for i in graph:
-    i.sort()
-    
-visited = [False] * (N+1)
-dfs(V)
+                visited[i] = True
+visited = [False for _ in range(n+1)]
+dfs(v)
 print()
-visited = [False] * (N+1)
-bfs(V)
+visited = [False for _ in range(n+1)]
+bfs(v)
